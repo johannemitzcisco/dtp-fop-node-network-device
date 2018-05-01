@@ -1,0 +1,41 @@
+module dtp-fo-hostname { 
+
+  namespace "http://www.cisco.com/dtp-fo-hostname";
+  prefix dtpn-hostname;
+
+  import dtp-network { prefix dtpn; }
+  import ietf-inet-types { prefix inet; }
+  import tailf-common { prefix tailf; }
+  import tailf-ncs { prefix ncs; }
+
+  description
+    "This is an add on model to the dtp-network package/service";
+
+  revision 2017-11-28 {
+    description
+      "Initial revision.";
+  }
+
+  augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:node/dtpn:function-objects {
+    list hostname {
+      max-elements 1;
+      key "function-object-name";
+      leaf function-object-name {
+        type leafref {
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:node/hostname/name";
+        }
+      }
+      leaf hostname {
+        type string;
+      }
+    }
+  }
+
+  augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:node {
+    list hostname {
+      key name;
+      uses dtpn:function-object;
+    }
+  }
+
+}

@@ -1,0 +1,11 @@
+<ncs-package xmlns="http://tail-f.com/ns/ncs-packages">
+  <name>dtp-fop-node-network-device</name>
+  <package-version>1.0</package-version>
+  <description>Network Device Node Function Object Package for the Development to Production system</description>
+  <ncs-min-version>4.6</ncs-min-version>
+
+  <required-package>
+    <name>dtp-network</name>
+  </required-package>
+
+</ncs-package>
