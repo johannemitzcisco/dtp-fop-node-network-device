@@ -1,0 +1,18 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+  <device>
+    <name>{$DEVICE-NAME}</name>
+      <config>
+        <?set-context-node {/network[name=$SERVICE-NAME]/topology[name=$TOPOLOGY-NAME]/function-objects/dns[function-object-name=$FO-NAME]}?>
+
+        <resources xmlns="http://www.cisco.com/ns/test/resource">
+        <resource foreach="{dns-server-ip}">
+          <resource_name>csp-2100</resource_name>
+            <dns_server>{current()}</dns_server>
+        </resource>
+        </resources>
+
+      </config>
+    </device>
+  </devices>
+</config>

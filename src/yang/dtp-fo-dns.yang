@@ -1,0 +1,66 @@
+module dtp-fo-dns { 
+
+  namespace "http://www.cisco.com/dtp-fo-dns";
+  prefix dtpn-dns;
+
+  import dtp-network { prefix dtpn; }
+  import ietf-inet-types { prefix inet; }
+  import tailf-common { prefix tailf; }
+  import tailf-ncs { prefix ncs; }
+
+  description
+    "This is an add on model to the dtp-network package/service";
+
+  revision 2017-11-28 {
+    description
+      "Initial revision.";
+  }
+
+  grouping dns-object {
+    leaf-list dns-server-ip {
+      type inet:ipv4-address;
+    }
+  }
+
+  grouping dns-fo {
+    list dns {
+      key name;
+      uses dtpn:function-object;
+    }
+  }
+
+  augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:function-objects {
+    list dns {
+      max-elements 1;
+      key "function-object-name";
+      leaf function-object-name {
+        type leafref {
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:topology/dns/name";
+        }
+      }
+      uses dns-object;
+    }
+  }
+
+  augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:node/dtpn:function-objects {
+    list dns {
+      max-elements 1;
+      key "function-object-name";
+      leaf function-object-name {
+        type leafref {
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:node/dns/name";
+        }
+      }
+      uses dns-object;
+    }
+  }
+
+  augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:topology {
+    uses dns-fo;
+  }
+
+  augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:node {
+    uses dns-fo;
+  }
+
+}

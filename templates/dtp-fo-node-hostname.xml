@@ -3,8 +3,18 @@
   <device>
     <name>{$DEVICE-NAME}</name>
       <config>
-        <hostname xmlns="http://tail-f.com/ned/cisco-ios-xr">{/network[name=$SERVICE-NAME]/topology/node[name=$NODE-NAME]/function-objects/hostname[function-object-name=$FO-NAME]/hostname}</hostname>
-        <hostname xmlns="http://tail-f.com/ned/cisco-nx">{/network[name=$SERVICE-NAME]/topology/node[name=$NODE-NAME]/function-objects/hostname[function-object-name=$FO-NAME]/hostname}</hostname>
+      	<?set-context-node {/network[name=$SERVICE-NAME]/topology[name=$TOPOLOGY-NAME]/node[name=$NODE-NAME]/function-objects/hostname[function-object-name=$FO-NAME]}?>
+        <hostname xmlns="http://tail-f.com/ned/cisco-ios-xr">{hostname}</hostname>
+
+        <hostname xmlns="http://tail-f.com/ned/cisco-nx">{hostname}</hostname>
+
+		<resources xmlns="http://www.cisco.com/ns/test/resource">
+		<resource>
+		<resource_name>csp-2100</resource_name>
+		  <host_name>{hostname}</host_name>
+		</resource>
+		</resources>
+
       </config>
     </device>
   </devices>

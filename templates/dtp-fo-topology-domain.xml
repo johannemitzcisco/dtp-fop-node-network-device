@@ -1,0 +1,22 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+  <device>
+    <name>{$DEVICE-NAME}</name>
+      <config>
+        <?set-context-node {/network[name=$SERVICE-NAME]/topology[name=$TOPOLOGY-NAME]/function-objects/domain[function-object-name=$FO-NAME]}?>
+
+        <ip xmlns="http://tail-f.com/ned/cisco-nx">
+          <domain-name>{domain-name}</domain-name>
+        </ip>
+
+        <resources xmlns="http://www.cisco.com/ns/test/resource">
+        <resource>
+          <resource_name>csp-2100</resource_name>
+            <domain_name>{domain-name}</domain_name>
+        </resource>
+        </resources>
+
+      </config>
+    </device>
+  </devices>
+</config>

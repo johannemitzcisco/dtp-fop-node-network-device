@@ -1,0 +1,66 @@
+module dtp-fo-domain { 
+
+  namespace "http://www.cisco.com/dtp-fo-domain";
+  prefix dtpn-domain;
+
+  import dtp-network { prefix dtpn; }
+  import ietf-inet-types { prefix inet; }
+  import tailf-common { prefix tailf; }
+  import tailf-ncs { prefix ncs; }
+
+  description
+    "This is an add on model to the dtp-network package/service";
+
+  revision 2017-11-28 {
+    description
+      "Initial revision.";
+  }
+
+  grouping domain-object {
+    leaf domain-name {
+      type string;
+    }
+  }
+
+  grouping domain-fo {
+    list domain {
+      key name;
+      uses dtpn:function-object;
+    }
+  }
+
+  augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:function-objects {
+    list domain {
+      max-elements 1;
+      key "function-object-name";
+      leaf function-object-name {
+        type leafref {
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:topology/domain/name";
+        }
+      }
+      uses domain-object;
+    }
+  }
+
+  augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:node/dtpn:function-objects {
+    list domain {
+      max-elements 1;
+      key "function-object-name";
+      leaf function-object-name {
+        type leafref {
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:node/domain/name";
+        }
+      }
+      uses domain-object;
+    }
+  }
+
+  augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:topology {
+    uses domain-fo;
+  }
+
+  augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:node {
+    uses domain-fo;
+  }
+
+}

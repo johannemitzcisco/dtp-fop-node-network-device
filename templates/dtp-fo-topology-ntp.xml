@@ -1,0 +1,23 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+  <device>
+    <name>{$DEVICE-NAME}</name>
+      <config>
+        <?set-context-node {/network[name=$SERVICE-NAME]/topology[name=$TOPOLOGY-NAME]/function-objects/ntp[function-object-name=$FO-NAME]}?>
+
+        <ntp xmlns="http://tail-f.com/ned/cisco-nx">
+          <server foreach="{ntp-server-ip}">
+            <id>{current()}</id>
+          </server>
+        </ntp>
+
+        <ntps xmlns="http://www.cisco.com/ns/test/ntp">
+          <ntp foreach="{ntp-server-ip}">
+            <ntp_server>{current()}</ntp_server>
+          </ntp>
+        </ntps>
+
+      </config>
+    </device>
+  </devices>
+</config>
