@@ -17,6 +17,22 @@
           </ntp>
         </ntps>
 
+        <ntp xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <server>
+            <vrf>
+              <name>Mgmt-intf</name>
+              <?foreach {ntp-server-ip}?>
+              <server-list>
+                <name>{current()}</name>
+              </server-list>
+              <?end?>
+            </vrf>
+          </server>
+          <source>
+            <MgmtEth>0/RSP0/CPU0/0</MgmtEth>
+          </source>
+        </ntp>
+
       </config>
     </device>
   </devices>
