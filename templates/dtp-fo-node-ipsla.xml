@@ -1,0 +1,49 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+  <device>
+    <name>{$DEVICE-NAME}</name>
+      <config>
+        <?set-context-node {/network[name=$SERVICE-NAME]/topology[name=$TOPOLOGY-NAME]/node[name=$NODE-NAME]/function-objects/ipsla[function-object-name=$FO-NAME]}?>
+
+        <ip xmlns="urn:ios">
+          <sla>
+            <responder-enable>
+              <responder/>
+            </responder-enable>
+            <key-chain>{key-chain-name}</key-chain>
+          </sla>
+        </ip>
+        <key xmlns="urn:ios">
+          <chain>
+            <name>{key-chain-name}</name>
+            <key>
+              <id>{key-chain-id}</id>
+              <key-string>
+                <type>0</type>
+                <secret>{key-chain-password}</secret>
+              </key-string>
+            </key>
+          </chain>
+        </key>
+
+        <key xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <chain>
+            <name>{key-chain-name}</name>
+            <key>
+              <id>{key-chain-id}</id>
+              <key-string>
+                <type>password</type>
+                <password>{key-chain-password}</password>
+              </key-string>
+            </key>
+          </chain>
+        </key>
+        <ipsla xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <key-chain>{key-chain-name}</key-chain>
+          <responder/>
+        </ipsla>
+
+      </config>
+    </device>
+  </devices>
+</config>

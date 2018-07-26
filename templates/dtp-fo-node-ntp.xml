@@ -17,6 +17,11 @@
           </ntp>
         </ntps>
 
+        <interface xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <MgmtEth>
+            <id>{source-interface/name}</id>
+          </MgmtEth>
+        </interface>
         <ntp xmlns="http://tail-f.com/ned/cisco-ios-xr">
           <server>
             <vrf>
@@ -29,7 +34,7 @@
             </vrf>
           </server>
           <source>
-            <MgmtEth>0/RSP0/CPU0/0</MgmtEth>
+            <MgmtEth>{source-interface/name}</MgmtEth>
           </source>
         </ntp>
 

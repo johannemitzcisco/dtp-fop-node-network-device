@@ -1,0 +1,122 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+  <device>
+    <name>{$DEVICE-NAME}</name>
+      <config>
+        <?set-context-node {/network[name=$SERVICE-NAME]/topology[name=$TOPOLOGY-NAME]/node[name=$NODE-NAME]/function-objects/logging[function-object-name=$FO-NAME]}?>
+
+          <service xmlns="urn:ios">
+            <timestamps>
+              <debug>
+                <datetime>
+                  <msec/>
+                  <localtime/>
+                  <show-timezone/>
+                </datetime>
+              </debug>
+              <log>
+                <datetime>
+                  <msec/>
+                  <localtime/>
+                  <show-timezone/>
+                </datetime>
+              </log>
+            </timestamps>
+          </service>
+          <ip xmlns="urn:ios">
+            <source-route>true</source-route>
+            <gratuitous-arps-conf>
+              <gratuitous-arps>false</gratuitous-arps>
+            </gratuitous-arps-conf>
+            <http>
+              <server>false</server>
+              <secure-server>false</secure-server>
+            </http>
+          </ip>
+          <logging xmlns="urn:ios">
+            <buffered>
+              <buffer-size>307200</buffer-size>
+              <severity-level>informational</severity-level>
+            </buffered>
+            <console>
+              <severity-level>informational</severity-level>
+            </console>
+            <event>
+              <link-status>
+                <default/>
+              </link-status>
+            </event>
+            <hostname foreach="{server-ip-address}">
+              <host>{current()}</host>
+            </hostname>
+            <hostname>
+              <host>synchronous</host>
+            </hostname>
+            <source-interface>
+              <name>{interface-name}</name>
+              <vrf>{interface-vrf}</vrf>
+            </source-interface>
+          </logging>
+          
+        <logging xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <trap>informational</trap>
+          <events>
+            <link-status>software-interfaces</link-status>
+          </events>
+          <buffered>
+            <size>307200</size>
+            <type>informational</type>
+          </buffered>
+          <facility>local7</facility>
+          <host foreach="{server-ip-address}">
+            <address>{current()}</address>
+            <vrf>{current()/../interface-vrf}</vrf>
+            <severity>info</severity>
+          </host>
+          <source-interface-vrf>
+            <source-interface>
+              <vrf>{interface-vrf}</vrf>
+              <interface>{interface-name}</interface>
+            </source-interface>
+          </source-interface-vrf>
+          <console>informational</console>
+          <suppress>
+            <rule>
+              <name>IDT</name>
+              <alarm>
+                <msg-category>LIBRARY</msg-category>
+                <group-name>REPLICATOR</group-name>
+                <msg-code>IDT_FAIL</msg-code>
+              </alarm>
+            </rule>
+            <apply>
+              <rule>
+                <name>IDT</name>
+                <all-of-router/>
+              </rule>
+            </apply>
+          </suppress>
+        </logging>
+        <service xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <timestamps>
+            <debug>
+              <datetime>
+                <localtime/>
+                <msec/>
+                <show-timezone/>
+              </datetime>
+            </debug>
+            <log>
+              <datetime>
+                <localtime/>
+                <msec/>
+                <show-timezone/>
+              </datetime>
+            </log>
+          </timestamps>
+        </service>
+          
+      </config>
+    </device>
+  </devices>
+</config>

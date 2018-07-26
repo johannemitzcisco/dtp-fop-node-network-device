@@ -16,6 +16,14 @@
         </resource>
         </resources>
 
+        <domain xmlns="urn:ios">
+          <name>{domain-name}</name>
+        </domain>
+
+        <domain xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <name>{domain-name}</name>
+        </domain>
+
       </config>
     </device>
   </devices>

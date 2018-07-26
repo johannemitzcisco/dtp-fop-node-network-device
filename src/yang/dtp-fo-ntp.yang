@@ -20,6 +20,16 @@ module dtp-fo-ntp {
     leaf-list ntp-server-ip {
       type inet:ipv4-address;
     }
+    container source-interface {
+      leaf type {
+        type enumeration {
+          enum "MgmtEth";
+        }
+      }
+      leaf name {
+        type string;
+      }
+    }
   }
 
   grouping ntp-fo {

@@ -1,7 +1,7 @@
-module dtp-fo-route-map { 
+module dtp-fo-bfd { 
 
-  namespace "http://www.cisco.com/dtp-fo-route-map";
-  prefix dtpn-route-map;
+  namespace "http://www.cisco.com/dtp-fo-bfd";
+  prefix dtpn-bfd;
 
   import dtp-network { prefix dtpn; }
   import ietf-inet-types { prefix inet; }
@@ -16,65 +16,48 @@ module dtp-fo-route-map {
       "Initial revision.";
   }
 
-  grouping route-map-object {
-    list route-map {
-      key name;
-      leaf name { type string; }
-      list action {
-        key action;
-        leaf action {
-          type enumeration {
-            enum "permit";
-            enum "deny";
-          }
-        }
-        
-      }
-    }
-    leaf-list route-map-server-ip {
-      type inet:ipv4-address;
-    }
+  grouping bfd-object {
   }
 
-  grouping route-map-fo {
-    list route-map {
+  grouping bfd-fo {
+    list bfd {
       key name;
       uses dtpn:function-object;
     }
   }
 
   augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:function-objects {
-    list route-map {
+    list bfd {
       max-elements 1;
       key "function-object-name";
       leaf function-object-name {
         type leafref {
-          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:topology/route-map/name";
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:topology/bfd/name";
         }
       }
-      uses route-map-object;
+      uses bfd-object;
     }
   }
 
   augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:node/dtpn:function-objects {
-    list route-map {
+    list bfd {
       max-elements 1;
       key "function-object-name";
       leaf function-object-name {
         type leafref {
-          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:node/route-map/name";
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:node/bfd/name";
         }
       }
-      uses route-map-object;
+      uses bfd-object;
     }
   }
 
   augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:topology {
-    uses route-map-fo;
+    uses bfd-fo;
   }
 
   augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:node {
-    uses route-map-fo;
+    uses bfd-fo;
   }
 
 }

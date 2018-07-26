@@ -6,6 +6,8 @@
       	<?set-context-node {/network[name=$SERVICE-NAME]/topology[name=$TOPOLOGY-NAME]/node[name=$NODE-NAME]/function-objects/hostname[function-object-name=$FO-NAME]}?>
         <hostname xmlns="http://tail-f.com/ned/cisco-ios-xr">{hostname}</hostname>
 
+        <hostname xmlns="urn:ios">{hostname}</hostname>
+
         <hostname xmlns="http://tail-f.com/ned/cisco-nx">{hostname}</hostname>
 
     		<resources xmlns="http://www.cisco.com/ns/test/resource">

@@ -1,0 +1,655 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+  <device>
+    <name>{$DEVICE-NAME}</name>
+      <config>
+        <?set-context-node {/network[name=$SERVICE-NAME]/topology[name=$TOPOLOGY-NAME]/function-objects/snmp[function-object-name=$FO-NAME]}?>
+
+        <snmp-server xmlns="urn:ios">
+          <community>
+            <name>{community/read-only}</name>
+            <RO/>
+            <access-list-name>5</access-list-name>
+          </community>
+          <community>
+            <name>{community/read-write}</name>
+            <RW/>
+            <access-list-name>5</access-list-name>
+          </community>
+          <contact>{contact}</contact>
+          <enable>
+            <traps>
+              <name>aaa_server</name>
+            </traps>
+            <traps>
+              <name>alarms informational</name>
+            </traps>
+            <traps>
+              <name>atm subif</name>
+            </traps>
+            <traps>
+              <name>bulkstat collection transfer</name>
+            </traps>
+            <traps>
+              <name>call-home message-send-fail server-fail</name>
+            </traps>
+            <traps>
+              <name>casa</name>
+            </traps>
+            <traps>
+              <name>cef resource-failure peer-state-change peer-fib-state-change inconsistency</name>
+            </traps>
+            <traps>
+              <name>cnpd</name>
+            </traps>
+            <traps>
+              <name>config</name>
+            </traps>
+            <traps>
+              <name>config-copy</name>
+            </traps>
+            <traps>
+              <name>config-ctid</name>
+            </traps>
+            <traps>
+              <name>cpu threshold</name>
+            </traps>
+            <traps>
+              <name>dhcp</name>
+            </traps>
+            <traps>
+              <name>dial</name>
+            </traps>
+            <traps>
+              <name>dlsw</name>
+            </traps>
+            <traps>
+              <name>ds1</name>
+            </traps>
+            <traps>
+              <name>dsp card-status</name>
+            </traps>
+            <traps>
+              <name>dsp oper-state</name>
+            </traps>
+            <traps>
+              <name>eigrp</name>
+            </traps>
+            <traps>
+              <name>entity</name>
+            </traps>
+            <traps>
+              <name>entity-diag boot-up-fail hm-test-recover hm-thresh-reached scheduled-test-fail</name>
+            </traps>
+            <traps>
+              <name>entity-qfp mem-res-thresh</name>
+            </traps>
+            <traps>
+              <name>entity-state</name>
+            </traps>
+            <traps>
+              <name>ether-oam</name>
+            </traps>
+            <traps>
+              <name>ethernet cfm alarm</name>
+            </traps>
+            <traps>
+              <name>ethernet cfm cc mep-up mep-down cross-connect loop config</name>
+            </traps>
+            <traps>
+              <name>ethernet cfm crosscheck mep-missing mep-unknown service-up</name>
+            </traps>
+            <traps>
+              <name>ethernet evc status create delete</name>
+            </traps>
+            <traps>
+              <name>event-manager</name>
+            </traps>
+            <traps>
+              <name>firewall serverstatus</name>
+            </traps>
+            <traps>
+              <name>flash insertion removal</name>
+            </traps>
+            <traps>
+              <name>frame-relay</name>
+            </traps>
+            <traps>
+              <name>frame-relay multilink bundle-mismatch</name>
+            </traps>
+            <traps>
+              <name>frame-relay subif</name>
+            </traps>
+            <traps>
+              <name>fru-ctrl</name>
+            </traps>
+            <traps>
+              <name>hsrp</name>
+            </traps>
+            <traps>
+              <name>ip local pool</name>
+            </traps>
+            <traps>
+              <name>ipmulticast</name>
+            </traps>
+            <traps>
+              <name>ipsec cryptomap add</name>
+            </traps>
+            <traps>
+              <name>ipsec cryptomap attach</name>
+            </traps>
+            <traps>
+              <name>ipsec cryptomap delete</name>
+            </traps>
+            <traps>
+              <name>ipsec cryptomap detach</name>
+            </traps>
+            <traps>
+              <name>ipsec too-many-sa</name>
+            </traps>
+            <traps>
+              <name>ipsec tunnel start</name>
+            </traps>
+            <traps>
+              <name>ipsec tunnel stop</name>
+            </traps>
+            <traps>
+              <name>ipsla</name>
+            </traps>
+            <traps>
+              <name>isis</name>
+            </traps>
+            <traps>
+              <name>l2tun pseudowire status</name>
+            </traps>
+            <traps>
+              <name>l2tun session</name>
+            </traps>
+            <traps>
+              <name>memory bufferpeak</name>
+            </traps>
+            <traps>
+              <name>mpls fast-reroute protected</name>
+            </traps>
+            <traps>
+              <name>mpls ldp</name>
+            </traps>
+            <traps>
+              <name>mpls rfc ldp</name>
+            </traps>
+            <traps>
+              <name>mpls rfc traffic-eng</name>
+            </traps>
+            <traps>
+              <name>mpls rfc vpn</name>
+            </traps>
+            <traps>
+              <name>mpls traffic-eng</name>
+            </traps>
+            <traps>
+              <name>mpls vpn</name>
+            </traps>
+            <traps>
+              <name>msdp</name>
+            </traps>
+            <traps>
+              <name>mvpn</name>
+            </traps>
+            <traps>
+              <name>nhrp nhc</name>
+            </traps>
+            <traps>
+              <name>nhrp nhp</name>
+            </traps>
+            <traps>
+              <name>nhrp nhs</name>
+            </traps>
+            <traps>
+              <name>nhrp quota-exceeded</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific errors</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific lsa</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific retransmit</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific state-change nssa-trans-change</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific state-change shamlink interface</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific state-change shamlink neighbor</name>
+            </traps>
+            <traps>
+              <name>ospf errors</name>
+            </traps>
+            <traps>
+              <name>ospf lsa</name>
+            </traps>
+            <traps>
+              <name>ospf retransmit</name>
+            </traps>
+            <traps>
+              <name>ospf state-change</name>
+            </traps>
+            <traps>
+              <name>pim neighbor-change rp-mapping-change invalid-pim-message</name>
+            </traps>
+            <traps>
+              <name>pppoe</name>
+            </traps>
+            <traps>
+              <name>pw vc</name>
+            </traps>
+            <traps>
+              <name>resource-policy</name>
+            </traps>
+            <traps>
+              <name>rf</name>
+            </traps>
+            <traps>
+              <name>rsvp</name>
+            </traps>
+            <traps>
+              <name>sbc adj-status</name>
+            </traps>
+            <traps>
+              <name>sbc blacklist</name>
+            </traps>
+            <traps>
+              <name>sbc congestion-alarm</name>
+            </traps>
+            <traps>
+              <name>sbc h248-ctrlr-status</name>
+            </traps>
+            <traps>
+              <name>sbc media-source</name>
+            </traps>
+            <traps>
+              <name>sbc qos-statistics</name>
+            </traps>
+            <traps>
+              <name>sbc radius-conn-status</name>
+            </traps>
+            <traps>
+              <name>sbc sla-violation</name>
+            </traps>
+            <traps>
+              <name>sbc sla-violation-rev1</name>
+            </traps>
+            <traps>
+              <name>sbc svc-state</name>
+            </traps>
+            <traps>
+              <name>snmp authentication linkdown linkup coldstart warmstart</name>
+            </traps>
+            <traps>
+              <name>sonet</name>
+            </traps>
+            <traps>
+              <name>srp</name>
+            </traps>
+            <traps>
+              <name>tty</name>
+            </traps>
+            <traps>
+              <name>voice</name>
+            </traps>
+            <traps>
+              <name>vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down</name>
+            </traps>
+            <traps>
+              <name>vrrp</name>
+            </traps>
+          </enable>
+          <ifindex>
+            <persist/>
+          </ifindex>
+          <trap-source>
+            <?if {trap-source/interface-type='GigabitEthernet'}?>
+            <GigabitEthernet>{trap-source/interface-id}</GigabitEthernet>
+            <?end?>
+          </trap-source>
+          <view>
+            <name>SNMP</name>
+            <mib>{oid/included}</mib>
+            <inc-exl>included</inc-exl>
+          </view>
+          <view>
+            <name>SNMP</name>
+            <mib>{oid/excluded}</mib>
+            <inc-exl>excluded</inc-exl>
+          </view>
+        </snmp-server>
+
+        <!-- snmp-server xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <community>
+            <name>{community/read-only}</name>
+            <RO/>
+            <access-list-name>5</access-list-name>
+          </community>
+          <community>
+            <name>{community/read-write}</name>
+            <RW/>
+            <access-list-name>5</access-list-name>
+          </community>
+          <contact>{contact}</contact>
+          <enable>
+            <traps>
+              <name>aaa_server</name>
+            </traps>
+            <traps>
+              <name>alarms informational</name>
+            </traps>
+            <traps>
+              <name>atm subif</name>
+            </traps>
+            <traps>
+              <name>bulkstat collection transfer</name>
+            </traps>
+            <traps>
+              <name>call-home message-send-fail server-fail</name>
+            </traps>
+            <traps>
+              <name>casa</name>
+            </traps>
+            <traps>
+              <name>cef resource-failure peer-state-change peer-fib-state-change inconsistency</name>
+            </traps>
+            <traps>
+              <name>cnpd</name>
+            </traps>
+            <traps>
+              <name>config</name>
+            </traps>
+            <traps>
+              <name>config-copy</name>
+            </traps>
+            <traps>
+              <name>config-ctid</name>
+            </traps>
+            <traps>
+              <name>cpu threshold</name>
+            </traps>
+            <traps>
+              <name>dhcp</name>
+            </traps>
+            <traps>
+              <name>dial</name>
+            </traps>
+            <traps>
+              <name>dlsw</name>
+            </traps>
+            <traps>
+              <name>ds1</name>
+            </traps>
+            <traps>
+              <name>dsp card-status</name>
+            </traps>
+            <traps>
+              <name>dsp oper-state</name>
+            </traps>
+            <traps>
+              <name>eigrp</name>
+            </traps>
+            <traps>
+              <name>entity</name>
+            </traps>
+            <traps>
+              <name>entity-diag boot-up-fail hm-test-recover hm-thresh-reached scheduled-test-fail</name>
+            </traps>
+            <traps>
+              <name>entity-qfp mem-res-thresh</name>
+            </traps>
+            <traps>
+              <name>entity-state</name>
+            </traps>
+            <traps>
+              <name>ether-oam</name>
+            </traps>
+            <traps>
+              <name>ethernet cfm alarm</name>
+            </traps>
+            <traps>
+              <name>ethernet cfm cc mep-up mep-down cross-connect loop config</name>
+            </traps>
+            <traps>
+              <name>ethernet cfm crosscheck mep-missing mep-unknown service-up</name>
+            </traps>
+            <traps>
+              <name>ethernet evc status create delete</name>
+            </traps>
+            <traps>
+              <name>event-manager</name>
+            </traps>
+            <traps>
+              <name>firewall serverstatus</name>
+            </traps>
+            <traps>
+              <name>flash insertion removal</name>
+            </traps>
+            <traps>
+              <name>frame-relay</name>
+            </traps>
+            <traps>
+              <name>frame-relay multilink bundle-mismatch</name>
+            </traps>
+            <traps>
+              <name>frame-relay subif</name>
+            </traps>
+            <traps>
+              <name>fru-ctrl</name>
+            </traps>
+            <traps>
+              <name>hsrp</name>
+            </traps>
+            <traps>
+              <name>ip local pool</name>
+            </traps>
+            <traps>
+              <name>ipmulticast</name>
+            </traps>
+            <traps>
+              <name>ipsec cryptomap add</name>
+            </traps>
+            <traps>
+              <name>ipsec cryptomap attach</name>
+            </traps>
+            <traps>
+              <name>ipsec cryptomap delete</name>
+            </traps>
+            <traps>
+              <name>ipsec cryptomap detach</name>
+            </traps>
+            <traps>
+              <name>ipsec too-many-sa</name>
+            </traps>
+            <traps>
+              <name>ipsec tunnel start</name>
+            </traps>
+            <traps>
+              <name>ipsec tunnel stop</name>
+            </traps>
+            <traps>
+              <name>ipsla</name>
+            </traps>
+            <traps>
+              <name>isis</name>
+            </traps>
+            <traps>
+              <name>l2tun pseudowire status</name>
+            </traps>
+            <traps>
+              <name>l2tun session</name>
+            </traps>
+            <traps>
+              <name>memory bufferpeak</name>
+            </traps>
+            <traps>
+              <name>mpls fast-reroute protected</name>
+            </traps>
+            <traps>
+              <name>mpls ldp</name>
+            </traps>
+            <traps>
+              <name>mpls rfc ldp</name>
+            </traps>
+            <traps>
+              <name>mpls rfc traffic-eng</name>
+            </traps>
+            <traps>
+              <name>mpls rfc vpn</name>
+            </traps>
+            <traps>
+              <name>mpls traffic-eng</name>
+            </traps>
+            <traps>
+              <name>mpls vpn</name>
+            </traps>
+            <traps>
+              <name>msdp</name>
+            </traps>
+            <traps>
+              <name>mvpn</name>
+            </traps>
+            <traps>
+              <name>nhrp nhc</name>
+            </traps>
+            <traps>
+              <name>nhrp nhp</name>
+            </traps>
+            <traps>
+              <name>nhrp nhs</name>
+            </traps>
+            <traps>
+              <name>nhrp quota-exceeded</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific errors</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific lsa</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific retransmit</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific state-change nssa-trans-change</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific state-change shamlink interface</name>
+            </traps>
+            <traps>
+              <name>ospf cisco-specific state-change shamlink neighbor</name>
+            </traps>
+            <traps>
+              <name>ospf errors</name>
+            </traps>
+            <traps>
+              <name>ospf lsa</name>
+            </traps>
+            <traps>
+              <name>ospf retransmit</name>
+            </traps>
+            <traps>
+              <name>ospf state-change</name>
+            </traps>
+            <traps>
+              <name>pim neighbor-change rp-mapping-change invalid-pim-message</name>
+            </traps>
+            <traps>
+              <name>pppoe</name>
+            </traps>
+            <traps>
+              <name>pw vc</name>
+            </traps>
+            <traps>
+              <name>resource-policy</name>
+            </traps>
+            <traps>
+              <name>rf</name>
+            </traps>
+            <traps>
+              <name>rsvp</name>
+            </traps>
+            <traps>
+              <name>sbc adj-status</name>
+            </traps>
+            <traps>
+              <name>sbc blacklist</name>
+            </traps>
+            <traps>
+              <name>sbc congestion-alarm</name>
+            </traps>
+            <traps>
+              <name>sbc h248-ctrlr-status</name>
+            </traps>
+            <traps>
+              <name>sbc media-source</name>
+            </traps>
+            <traps>
+              <name>sbc qos-statistics</name>
+            </traps>
+            <traps>
+              <name>sbc radius-conn-status</name>
+            </traps>
+            <traps>
+              <name>sbc sla-violation</name>
+            </traps>
+            <traps>
+              <name>sbc sla-violation-rev1</name>
+            </traps>
+            <traps>
+              <name>sbc svc-state</name>
+            </traps>
+            <traps>
+              <name>snmp authentication linkdown linkup coldstart warmstart</name>
+            </traps>
+            <traps>
+              <name>sonet</name>
+            </traps>
+            <traps>
+              <name>srp</name>
+            </traps>
+            <traps>
+              <name>tty</name>
+            </traps>
+            <traps>
+              <name>voice</name>
+            </traps>
+            <traps>
+              <name>vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down</name>
+            </traps>
+            <traps>
+              <name>vrrp</name>
+            </traps>
+          </enable>
+          <ifindex>
+            <persist/>
+          </ifindex>
+          <trap-source>
+            <?if {trap-source/interface-type='GigabitEthernet'}?>
+            <GigabitEthernet>{trap-source/interface-id}</GigabitEthernet>
+            <?end?>
+          </trap-source>
+          <view>
+            <name>SNMP</name>
+            <mib>{oid/included}</mib>
+            <inc-exl>included</inc-exl>
+          </view>
+          <view>
+            <name>SNMP</name>
+            <mib>{oid/excluded}</mib>
+            <inc-exl>excluded</inc-exl>
+          </view>
+        </snmp-server -->
+
+      </config>
+    </device>
+  </devices>
+</config>

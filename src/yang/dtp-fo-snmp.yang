@@ -1,0 +1,107 @@
+module dtp-fo-snmp { 
+
+  namespace "http://www.cisco.com/dtp-fo-snmp";
+  prefix dtpn-snmp;
+
+  import dtp-network { prefix dtpn; }
+  import ietf-inet-types { prefix inet; }
+  import tailf-common { prefix tailf; }
+  import tailf-ncs { prefix ncs; }
+
+  description
+    "This is an add on model to the dtp-network package/service";
+
+  revision 2017-11-28 {
+    description
+      "Initial revision.";
+  }
+
+  grouping snmp-object-topology {
+    leaf snmp-server-ip {
+      type inet:ipv4-address;
+    }
+    container oid {
+      leaf included {
+        type string;
+      }
+      leaf excluded {
+        type string;
+      }
+    }
+    container community {
+      leaf read-only {
+        type string;
+      }
+      leaf read-write {
+        type string;
+      }
+    }
+    container trap-source {
+      leaf interface-type {
+        type enumeration {
+          enum "GigabitEthernet";
+        }
+      }
+      leaf interface-id {
+        type string;
+      }
+    }
+    leaf contact {
+      type string;
+    }
+  }
+
+  grouping snmp-object-node {
+    leaf location {
+      type string;
+    }
+    leaf chassis-id {
+      type string;
+    }
+    leaf contact {
+      type string;
+    }
+  }
+
+  grouping snmp-fo {
+    list snmp {
+      key name;
+      uses dtpn:function-object;
+    }
+  }
+
+  augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:function-objects {
+    list snmp {
+      max-elements 1;
+      key "function-object-name";
+      leaf function-object-name {
+        type leafref {
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:topology/snmp/name";
+        }
+      }
+      uses snmp-object-topology;
+    }
+  }
+
+  augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:node/dtpn:function-objects {
+    list snmp {
+      max-elements 1;
+      key "function-object-name";
+      leaf function-object-name {
+        type leafref {
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:node/snmp/name";
+        }
+      }
+      uses snmp-object-node;
+    }
+  }
+
+  augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:topology {
+    uses snmp-fo;
+  }
+
+  augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:node {
+    uses snmp-fo;
+  }
+
+}

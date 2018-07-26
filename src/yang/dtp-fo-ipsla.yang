@@ -1,7 +1,7 @@
-module dtp-fo-route-map { 
+module dtp-fo-ipsla { 
 
-  namespace "http://www.cisco.com/dtp-fo-route-map";
-  prefix dtpn-route-map;
+  namespace "http://www.cisco.com/dtp-fo-ipsla";
+  prefix dtpn-ipsla;
 
   import dtp-network { prefix dtpn; }
   import ietf-inet-types { prefix inet; }
@@ -16,65 +16,59 @@ module dtp-fo-route-map {
       "Initial revision.";
   }
 
-  grouping route-map-object {
-    list route-map {
-      key name;
-      leaf name { type string; }
-      list action {
-        key action;
-        leaf action {
-          type enumeration {
-            enum "permit";
-            enum "deny";
-          }
-        }
-        
+  grouping ipsla-object {
+    container key-chain {
+      leaf id {
+        type uint8;
       }
-    }
-    leaf-list route-map-server-ip {
-      type inet:ipv4-address;
+      leaf name {
+        type string;
+      }
+      leaf password {
+        type string;
+      }
     }
   }
 
-  grouping route-map-fo {
-    list route-map {
+  grouping ipsla-fo {
+    list ipsla {
       key name;
       uses dtpn:function-object;
     }
   }
 
   augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:function-objects {
-    list route-map {
+    list ipsla {
       max-elements 1;
       key "function-object-name";
       leaf function-object-name {
         type leafref {
-          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:topology/route-map/name";
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:topology/ipsla/name";
         }
       }
-      uses route-map-object;
+      uses ipsla-object;
     }
   }
 
   augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:node/dtpn:function-objects {
-    list route-map {
+    list ipsla {
       max-elements 1;
       key "function-object-name";
       leaf function-object-name {
         type leafref {
-          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:node/route-map/name";
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:node/ipsla/name";
         }
       }
-      uses route-map-object;
+      uses ipsla-object;
     }
   }
 
   augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:topology {
-    uses route-map-fo;
+    uses ipsla-fo;
   }
 
   augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:node {
-    uses route-map-fo;
+    uses ipsla-fo;
   }
 
 }

@@ -1,7 +1,7 @@
-module dtp-fo-route-map { 
+module dtp-fo-timezone { 
 
-  namespace "http://www.cisco.com/dtp-fo-route-map";
-  prefix dtpn-route-map;
+  namespace "http:www.cisco.com/dtp-fo-timezone";
+  prefix dtpn-timezone;
 
   import dtp-network { prefix dtpn; }
   import ietf-inet-types { prefix inet; }
@@ -16,65 +16,63 @@ module dtp-fo-route-map {
       "Initial revision.";
   }
 
-  grouping route-map-object {
-    list route-map {
-      key name;
-      leaf name { type string; }
-      list action {
-        key action;
-        leaf action {
-          type enumeration {
-            enum "permit";
-            enum "deny";
-          }
-        }
-        
-      }
+  grouping timezone-object {
+    leaf timezone {
+      type string;
     }
-    leaf-list route-map-server-ip {
-      type inet:ipv4-address;
+    container offset {
+      leaf hours {
+        type int8 {
+          range "-23..23";
+        }
+      }
+      leaf minutes {
+        type uint8 {
+          range "0..59";
+        }
+      }
     }
   }
 
-  grouping route-map-fo {
-    list route-map {
+  grouping timezone-fo {
+    list timezone {
       key name;
       uses dtpn:function-object;
     }
   }
 
   augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:function-objects {
-    list route-map {
+    list timezone {
       max-elements 1;
       key "function-object-name";
       leaf function-object-name {
         type leafref {
-          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:topology/route-map/name";
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:topology/timezone/name";
         }
       }
-      uses route-map-object;
+      uses timezone-object;
     }
   }
 
   augment /dtpn:dtp/dtpn:network/dtpn:topology/dtpn:node/dtpn:function-objects {
-    list route-map {
+    list timezone {
       max-elements 1;
       key "function-object-name";
       leaf function-object-name {
         type leafref {
-          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:node/route-map/name";
+          path "/dtpn:dtp/dtpn:function-object-definitions/dtpn:node/timezone/name";
         }
       }
-      uses route-map-object;
+      uses timezone-object;
     }
   }
 
   augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:topology {
-    uses route-map-fo;
+    uses timezone-fo;
   }
 
   augment /dtpn:dtp/dtpn:function-object-definitions/dtpn:node {
-    uses route-map-fo;
+    uses timezone-fo;
   }
 
 }
