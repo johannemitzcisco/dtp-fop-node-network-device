@@ -7,5 +7,17 @@
   <required-package>
     <name>dtp-network</name>
   </required-package>
+  <!-- required-package>
+    <name>cisco-ios</name>
+  </required-package>
+  <required-package>
+    <name>cisco-iosxr</name>
+  </required-package>
+  <required-package>
+    <name>cisco-csp2100</name>
+  </required-package>
+  <required-package>
+    <name>cisco-nx</name>
+  </required-package -->
 
 </ncs-package>
